@@ -6,7 +6,6 @@
 #include <windows.h>
 #endif
 
-// Проверяем весь токен: дробь или число с буквами не являются координатой.
 bool readCoordinate(int& value) {
     std::string token;
     if (!(std::cin >> token)) return false;
@@ -15,7 +14,6 @@ bool readCoordinate(int& value) {
     return static_cast<bool>(input >> value) && !(input >> extra);
 }
 
-// Точка P лежит строго внутри отрезка AB, а не на его продолжении.
 bool between(int px, int py, int ax, int ay, int bx, int by) {
     const bool onLine = (px - ax) * (by - ay) == (py - ay) * (bx - ax);
     const bool inside = (px - ax) * (px - bx) + (py - ay) * (py - by) < 0;
@@ -24,7 +22,6 @@ bool between(int px, int py, int ax, int ay, int bx, int by) {
 
 int main() {
 #ifdef _WIN32
-    // Меняем только кодировку консоли текущего запуска, а не настройки Windows.
     SetConsoleOutputCP(CP_UTF8);
     SetConsoleCP(CP_UTF8);
 #endif
@@ -37,7 +34,6 @@ int main() {
         return 1;
     }
 
-    // До вычислений проверяем границы и разные клетки всех фигур.
     const auto valid = [](int x, int y) {
         return x >= 1 && x <= 8 && y >= 1 && y <= 8;
     };
